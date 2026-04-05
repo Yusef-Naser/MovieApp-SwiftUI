@@ -19,18 +19,24 @@ public class ApiClient {
     
     public func performRequest <T : Codable > (url : URLRequest ,  type : T.Type ,
                                         decoder: JSONDecoder = JSONDecoder() ) -> AnyPublisher< T , NetworkError> {
+        #if DEBUG
         print("Start Request url: \(url.url?.absoluteString ?? "")")
+        #endif
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { output -> T in
                 
                 // Convert the data to a pretty-printed JSON string
+                #if DEBUG
                 print("ResponseString: (\(T.self)):\n\(String(decoding: output.data, as: UTF8.self))")
+                #endif
                 let jsonObject = try JSONSerialization.jsonObject(with: output.data, options: [])
                 let prettyData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
                 guard let prettyString = String(data: prettyData, encoding: .utf8) else {
                     throw NetworkError(code: -1 , message: "invalidResponse")
                 }
+                #if DEBUG
                 print("Response (\(T.self)):\n\(prettyString)")
+                #endif
                 
                 let decoder = JSONDecoder()
                 let decodedData = try decoder.decode(T.self, from: output.data)

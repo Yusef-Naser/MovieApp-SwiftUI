@@ -142,7 +142,9 @@ public class DiscoverRepo : DiscoverRepoProtocol  {
                 try context?.save()
             }
         }catch {
+            #if DEBUG
             print("Error Saveing Movies")
+            #endif
         }
         
         
@@ -163,7 +165,9 @@ public class DiscoverRepo : DiscoverRepoProtocol  {
                 context?.insert(generic)
                 try context?.save()
             }catch {
+                #if DEBUG
                 print("error add generics")
+                #endif
             }
         }
     }

@@ -14,10 +14,14 @@ public struct DebugViewModifier: ViewModifier {
         content
             //.navigationBarHidden(true)
             .onAppear {
+                #if DEBUG
                 print("\(viewName) appeared")
+                #endif
             }
             .onDisappear {
+#if DEBUG
                 print("\(viewName) disappeared")
+#endif
             }
     }
 }

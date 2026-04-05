@@ -12,8 +12,5 @@ public class MovieAppUtilities {
         
     }
     
-    public func printValue (value : String) {
-        print("value is: \(value)")
-    }
     
 }
