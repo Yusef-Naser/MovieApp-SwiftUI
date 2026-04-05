@@ -17,8 +17,8 @@ struct TagView: View {
             .font(.subheadline)
             .padding(.vertical, 8)
             .padding(.horizontal, 15)
-            .background(isSelected ? Color.blue : Color.gray.opacity(0.2))
-            .foregroundColor(isSelected ? .white : .black)
+            .background(isSelected ? Color.blue : Color(.systemGray6))
+            .foregroundColor(isSelected ? .white : .primary)
             .cornerRadius(20)
             .animation(.easeInOut(duration: 0.2), value: isSelected)
     }
