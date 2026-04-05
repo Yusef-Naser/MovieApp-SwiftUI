@@ -21,12 +21,14 @@ extension Route : View {
     public var body: some View {
         switch self {
         case .DiscoverScene:
+            let vm = DiscoverViewModel(repo: DiscoverRepo())
             return AnyView(
-                DiscoverView()
+                DiscoverView(viewModel: vm)
                     .debug("DiscoverView")
             )
         case .MovieDetails(let movie):
-            let viewModel = DetailsViewModel()
+            
+            let viewModel = DetailsViewModel(repo: DetailsRepo())
             viewModel.idMovie = movie.id ?? 0
             return AnyView(
                 MovieDetailsView(viewModel: viewModel)

@@ -110,11 +110,11 @@ final class MockDiscoverRepo: DiscoverRepoProtocol {
     var isConected: Bool = true
     var context: ModelContext? = nil
     
-    func fetchAllMoviesData() throws -> [LogicScenes.MovieDataModel] {
+    func fetchAllMoviesData() throws -> [MovieApp_Entites.MovieDataModel] {
         []
     }
     
-    func fetchAllGenericsData() throws -> [LogicScenes.GenreDataModel] {
+    func fetchAllGenericsData() throws -> [MovieApp_Entites.GenreDataModel] {
         []
     }
     

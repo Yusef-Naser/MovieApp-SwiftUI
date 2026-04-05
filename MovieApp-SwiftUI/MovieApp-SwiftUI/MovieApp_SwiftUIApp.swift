@@ -15,11 +15,11 @@ internal import SwiftData
 struct MovieApp_SwiftUIApp: App {
     
     @StateObject var appRouter = AppRouter()
-    
+    let vm = DiscoverViewModel(repo: DiscoverRepo())
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $appRouter.rootPath) {
-                DiscoverView()
+                DiscoverView(viewModel: vm)
                     .navigationDestination(for: Route.self ) { $0 }
             }
             .environmentObject(appRouter)

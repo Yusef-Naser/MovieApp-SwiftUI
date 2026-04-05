@@ -28,4 +28,7 @@ struct StaticData {
         movie_5
     ]
     
+    
+    static let movie_6 = EntityMovie(adult: nil, backdropPath: nil , belongsToCollection: nil , budget: 100, genres: [Genre(id: 1, name: "action")], homepage: "https://google.com", id: 7, imdbID: nil , originCountry: nil , originalLanguage: "EN", originalTitle: "originalTitle", overview: "overview", popularity: nil , posterPath: "posterPath", productionCompanies: nil, productionCountries: nil , releaseDate: "releaseDate", revenue: 1000, runtime: 100000, spokenLanguages: nil , status: "status", tagline: "tagLine", title: "Title_6", video: nil , voteAverage: nil , voteCount: nil )
+    
 }

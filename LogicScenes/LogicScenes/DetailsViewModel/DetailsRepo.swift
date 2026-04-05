@@ -11,14 +11,24 @@ import MovieApp_Entites
 import SwiftData
 import Foundation
 
-public class DetailsRepo {
+public protocol DetailsRepoProtocol {
+    var isConnected: Bool {set get}
+    var context: ModelContext? {get set}
+    func getDetailsMovie(id : Int) async throws -> EntityMovie?
+    func fetchMovie(by id: Int) throws -> MovieDataModel?
+}
+
+public class DetailsRepo : DetailsRepoProtocol {
     
     var cancellables = Set<AnyCancellable>()
-    var isConnected = true
+    public var isConnected = true
     public var context: ModelContext? = nil
     
+    public init () {
+        
+    }
     
-    func getDetailsMovie(id : Int) async throws -> EntityMovie? {
+    public func getDetailsMovie(id : Int) async throws -> EntityMovie? {
         
         if !isConnected {
             do {
@@ -80,7 +90,7 @@ public class DetailsRepo {
        
     }
     
-    func fetchMovie(by id: Int) throws -> MovieDataModel? {
+    public func fetchMovie(by id: Int) throws -> MovieDataModel? {
         // 1. Create the predicate to match the ID
         let movieID = id
         let descriptor = FetchDescriptor<MovieDataModel>(

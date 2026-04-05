@@ -15,13 +15,10 @@ public struct DiscoverView : View {
     
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var appRouter: AppRouter
-    @StateObject private var viewModel: DiscoverViewModel = {
-        let vm = DiscoverViewModel(repo: DiscoverRepo())
-        return vm
-    }()
-    
-    public init () {
-        
+    @StateObject var viewModel: DiscoverViewModel
+
+    public init( viewModel: DiscoverViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     public var body: some View {
@@ -84,8 +81,4 @@ public struct DiscoverView : View {
             GridItem(.flexible(), spacing: 12)
         ]
     }
-}
-
-#Preview {
-    DiscoverView()
 }

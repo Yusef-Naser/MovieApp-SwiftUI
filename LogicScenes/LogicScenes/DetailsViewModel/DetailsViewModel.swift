@@ -11,12 +11,17 @@ import Foundation
 
 public class DetailsViewModel : BaseViewModel {
     
-    public var repo = DetailsRepo()
+    public var repo : DetailsRepoProtocol
     public var idMovie = 0
     @Published public var movie : EntityMovie?
     @Published public var genres : [Genre] = []
     
     @Published var networkMonitor = NetworkMonitor ()
+    
+    public init(repo: DetailsRepoProtocol ) {
+        self.repo = repo
+        super.init()
+    }
     
     @MainActor
     public func getDetailsMovie () async {
